@@ -11,9 +11,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
+      # - uses: actions/setup-python@v4
+      #   with:
+      #     python-version: '3.x'
       - uses: iterative/setup-cml@v1
       - name: Train model
         run: |
@@ -28,9 +28,9 @@ jobs:
           cat metrics.txt >> report.md
 
           echo "## Data visualization" >> report.md
-          cml-publish feature_importance.png --md >> report.md
-          cml-publish residuals.png --md >> report.md
-
+          echo "![](./feature_importance.png)" >> report.md
+          echo "![](./residuals.png)" >> report.md
+          
           cml comment create report.md
       
   
